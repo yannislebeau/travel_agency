@@ -7,9 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RequestHandling {
+    private final UserHandling userhandling;
     @PostMapping("/api/inscription")
     ResponseEntity userCreation (@RequestBody User user){
-        System.out.println("ca marche");
+        userhandling.addUser(user);
         return ResponseEntity.ok().build();
+    }
+    public RequestHandling(){
+        userhandling = new UserHandling();
     }
 }
